@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
   } else {
     // Fallback for databases that don't require specific CA
     sslConfig = {
-      rejectUnauthorized: true
+      rejectUnauthorized: false
     };
   }
 } else {
