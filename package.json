@@ -1,0 +1,35 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "start:dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 nodemon index.js",
+    "test:db": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 node db/index.js",
+    "db:migrate": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 node db/migrate.js",
+    "seed:admin": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 node db/seedAdmin.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.10.1",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "csv-parse": "^5.6.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.1",
+    "pg": "^8.16.2",
+    "prisma": "^6.10.1",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.10"
+  }
+}
