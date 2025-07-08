@@ -59,28 +59,21 @@ const queueMessageController = {
   retryMessage: async (req, res) => {
     try {
       const { id } = req.params;
-      console.log("retry-message-id->", {id});
       const { rows: found } = await dbQuery(
         `SELECT status FROM messages WHERE id = $1`,
         [id]
-      );    
+      );
       if (!found[0]) {
         return res.status(404).json({ message: "Message not found" });
       }
-      if (!["retrying", "failed"].includes(found[0].status)) {
-        return res
-          .status(400)
-          .json({ message: "Message is not in a retryable state" });
-      }
-      const { rows } = await dbQuery(
+      const { rows: updatedRows } = await dbQuery(
         `UPDATE messages 
                  SET status = 'queued', retry_count = retry_count + 1 
                  WHERE id = $1
                  RETURNING *`,
         [id]
       );
-
-      res.json({ message: "success", message: rows[0] });
+      res.json({ message: "success", data: updatedRows[0] });
     } catch (err) {
       res.status(500).json({ message: "Server error", error: err.message });
     }

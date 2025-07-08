@@ -42,7 +42,6 @@ const campaignController = {
         [id]
       );
       if (!result.rows[0]) return res.status(404).json({ message: "Not found" });
-      // Optionally, fetch related stats, logs, or messages
       res.json(result.rows[0]);
     } catch (error) {
       res.status(500).json({ message: "Server error", error: error.message });
@@ -77,7 +76,6 @@ const campaignController = {
     }
   },
 
-  // 5. Complete a campaign
   async complete(req, res) {
     try {
       const { id } = req.params;
@@ -86,14 +84,12 @@ const campaignController = {
         [id]
       );
       if (!result.rows[0]) return res.status(404).json({ message: "Campaign not found or not active" });
-      // TODO: Notify client (email, notification)
       res.json({ message: "Campaign completed", campaign: result.rows[0] });
     } catch (error) {
       res.status(500).json({ message: "Server error", error: error.message });
     }
   },
 
-  // 6. Export campaigns to CSV
   async export(req, res) {
     try {
       const { status, client, search } = req.query;
@@ -130,7 +126,6 @@ const campaignController = {
   async stats(req, res) {
     try {
       const { id } = req.params;
-      // Aggregate stats for the campaign
       const result = await dbQuery(
         `SELECT 
           COUNT(*) as total_messages,

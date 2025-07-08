@@ -6,8 +6,13 @@ require("dotenv").config;
 
 const db = require("./db");
 
-// Middleware
-app.use(cors("*"));
+// app.use(
+//   cors({
+//     origin: "http://sms-marketing-system-third.vercel.app",
+//     credentials: true,
+//   })
+// );
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 
 // Mount routes
@@ -15,8 +20,8 @@ app.use("/api/auth", require("./routes/auth"));
 
 //admin routes
 app.use("/api/admin/clients", require("./routes/admin/manageClient"));
-app.use("/api/admin/senderIds", require("./routes/admin/senderIds"))
-app.use("/api/admin/templates", require("./routes/admin/templates"))
+app.use("/api/admin/senderIds", require("./routes/admin/senderIds"));
+app.use("/api/admin/templates", require("./routes/admin/templates"));
 
 //client routes
 app.use("/api/groups", require("./routes/groupRoutes"));

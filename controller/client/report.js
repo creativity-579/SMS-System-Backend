@@ -14,7 +14,6 @@ const reportsController = {
         page = 1,
         pageSize = 50,
       } = req.query;
-      console.log("req.query-->", req.query);
       const params = [userId];
 
       let query = `

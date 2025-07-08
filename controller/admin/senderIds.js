@@ -111,9 +111,9 @@ const senderIdsController = {
           [now, id]
         );
       } else if (status === "rejected") {
-        if (!rejection_reason) {
-          return res.status(400).json({ message: "Rejection reason required" });
-        }
+        // if (!rejection_reason) {
+        //   return res.status(400).json({ message: "Rejection reason required" });
+        // }
         result = await dbQuery(
           `UPDATE sender_ids 
            SET status = 'rejected', rejection_reason = $1, approved_at = NULL, updated_at = $2 
